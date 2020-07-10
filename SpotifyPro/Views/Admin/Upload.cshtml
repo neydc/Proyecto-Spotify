@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<h1>Upload</h1>
+
+
+<form method="post" enctype="multipart/form-data" action="/SubirImagen">
+    <div>
+        <p>Upload one or more files using this form:</p>
+        <input type="file" name="files" />
+    </div>
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+</form>

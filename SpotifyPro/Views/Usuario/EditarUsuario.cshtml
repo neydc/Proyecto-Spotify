@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Cuenta</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+   
+    <style>
+        strong {
+            color: rgba(255, 0, 0, 0.72);
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data" action="/Usuario/EditarUsuario">
+       <div class="">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div  class="text-center">
+                        <a href="~/">
+                            <img src="~/Img/logo.PNG" />
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="text-center">
+                        @if (ViewBag.ImagenEditar != "")
+                        {
+                            <img class="" src="/Images/@ViewBag.ImagenEditar" width="150">
+                            <div>
+                                <input class="btn sf-link" type="file" name="photo" />
+                            </div>
+                            <div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <input type="file" name="photo" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Content -->
+                    <input type="hidden" name="Id" value="@ViewBag.IDSSSS" />
+                    <label>User: @Model.Nombre  @Model.Apellido</label>
+                    <input type="hidden" name="Nombre" value="@Model.Nombre" />
+                    <input type="hidden" name="Apellido" value="@Model.Apellido" />
+                    <hr />
+                    <label>Correo</label>
+                    <input class="form-control" name="Correo" autocomplete="off" value="@Model.Correo" />
+                    <strong>@Html.ValidationMessage("Correo")</strong>
+                    <br />
+                    <label>Nickname: @Model.Nickname</label>
+                    <input type="hidden" class="form-control" name="Nickname" autocomplete="off" value="@Model.Nickname" />
+                    <strong>@Html.ValidationMessage("Nickname")</strong>
+                    <br />
+                    <label>Contraseña</label>
+                    <input class="form-control" name="Password" type="password" autocomplete="off" value="@Model.Password" />
+                    <strong>@Html.ValidationMessage("Password")</strong>   <br />
+
+                    <button class="btn btn-success">Guardar Cambios</button>
+                    <a class="btn btn-primary" href="/Usuario/Index">Cancelar</a>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>
+
+
+
+
+@*<script>
+    $(document).ready(function () {
+        $("input").keypress(function () {
+            $.ajax({
+                url: 'https://localhost:44365/Usuario/Registrarse',
+                type: 'post'
+            }).done(function (response) {
+                $("#input").css("border-color", "green");
+            });
+        });
+    });
+</script>*@
+
+@*<script>
+    $(document).ready(function () {
+        $("input").keypress(function () {
+            $.ajax({
+                url: 'https://localhost:44365/Usuario/Registrarse',
+                type: 'post'
+            }).done(function (response) {
+                $("#input").css("border-color", "green");
+            });
+        });
+    });
+</script>*@

@@ -1,0 +1,35 @@
+﻿@{
+
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th style="font-size:24px">Nickname</th>
+            <th style="font-size:24px">Nombre</th>
+            <th style="font-size:24px">Apellido</th>
+            <th style="font-size:24px">Amistad</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nickname</td>
+            <td>@item.Nombre</td>
+            <td>@item.Apellido</td>
+            <td>
+                @if (!((List<int>)ViewBag.Amigos).Contains(item.Id))
+                {
+                    <a href="/Usuario/Agregar?IdUsuario=@item.Id"><i class='fas fa-user-plus' style='font-size:24px;color:white'></i></a>
+                }
+                else
+                {
+                <i class='fas fa-user-friends' style='font-size:24px;color:white'></i>
+            }
+            </tr>
+    }
+    </tbody>
+</table>

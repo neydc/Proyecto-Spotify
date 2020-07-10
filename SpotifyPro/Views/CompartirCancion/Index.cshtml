@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <br />
+            <h3 style="color:white" class="text-center">canciones Compartidas</h3>
+            <br />
+            <table class="table table-dark">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="font-size:16px" >Cancion</th>
+                        <th style="font-size:16px">La sugeriste a  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.CancionesCompartidas)
+                    {
+                        <tr>
+                            <td>@ViewBag.canciones[item.IdCancion].Nombre</td>
+
+                            <td>@ViewBag.usuarios[item.IdAmigoC].Nombre  @ViewBag.usuarios[item.IdAmigoC].Apellido</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <h2 style="color:white" class="text-center"> canciones que me compartieron</h2>
+            <table class="table table-dark">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="font-size:16px">Sugeridos por</th>
+                        <th style="font-size:16px">Cancion sugerida </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.cancionesCompartidasAMi)
+                    {
+                        <tr>
+                            <td>@ViewBag.usuarios[item.IdLocalC].Nombre  @ViewBag.usuarios[item.IdLocalC].Apellido</td>
+                            <td>@ViewBag.canciones[item.IdCancion].Nombre</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

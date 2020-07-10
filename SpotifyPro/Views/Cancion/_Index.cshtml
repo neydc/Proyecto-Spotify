@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Fecha de lanzamiento</th>
+            <th>--------play------</th>
+            <th>--------Me Gusta------</th>
+            <th>--------No Me Gusta------</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Nombre</td>
+            <td>@item.FechaLanzamiento</td>
+            <td>@item.Musica</td>
+            <td>@item.Megusta</td>
+            <td>@item.NoMeGusta</td>
+            <td>
+                @if (!((List<int>)ViewBag.favoritas).Contains(item.Id))
+                {
+                    <a href="/Cancion/AgregarFavorita?IdCancion=@item.Id">Agregar a favoritos</a>
+                }
+                else
+                {
+                <td>Ya es favorita</td>
+
+            }
+
+            </tr>
+            }
+    </tbody>
+</table>

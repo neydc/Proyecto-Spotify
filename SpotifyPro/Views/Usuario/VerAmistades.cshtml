@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "VerAmistades";
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<div class="container">
+    <div class="row">
+        <br />
+
+        <br />
+        <a href="~/Usuario/Index"><i class='far fa-arrow-alt-circle-left' style='font-size:36px;color:white'></i></a>
+
+        <h1 class="text-center" style="color:white">Mis Amigos</h1>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th style="font-size:24px">Nombre</th>
+            <th style="font-size:24px">Apellido</th>
+            <th style="font-size:24px">Btn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>
+                    <a href="/Usuario/EliminarAmistad?IdUsuario=@item.Id"><i class='fas fa-user-slash' style='font-size:24px;color:red'></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

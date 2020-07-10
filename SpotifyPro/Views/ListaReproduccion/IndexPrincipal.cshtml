@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+@*Vista de las listas de reproducción llamadas en el index*@
+@*<script>
+        $("#numId").click(function (e) {
+            var url = $("#numId").attr("href");
+            $.get(url, function (respuesta) {
+
+                $("#contenedor").html(respuesta);
+            });
+            e.preventDefault();
+        });
+    </script>*@
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
+    $('input').click(function (event) {
+        var url = $('a').attr('href');
+        var enlace = $('input').val();
+        alert(url);
+        alert(enlace);
+        $.get(url, function (respuesta) {
+
+            $("#contenedor").html(respuesta);
+        });
+        event.preventDefault();
+    });
+</script>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <a  href="/ListaReproduccion/DetalleDeLaLista?IdLista=@item.Id" class="sf-link">@item.Nombre</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="contenedor">
+
+</div>
+

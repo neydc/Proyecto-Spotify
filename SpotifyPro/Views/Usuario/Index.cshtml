@@ -1,0 +1,312 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Spotify Pro</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    @*<link rel="stylesheet" href="style.css" />*@
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+    <script>
+        $(document).ready(function (e) {
+            $.get("/ListaReproduccion/IndexPrincipal", function (respuesta) {
+                $("#tbody").html(respuesta);
+            });
+            e.preventDefault();
+        });
+    </script>
+    <script>
+        //function reproducir() {
+
+        //    var url = $("#buton").attr("href");
+
+        //    $.get(url, function (respuesta) {
+
+        //        $("#contenedor").html(respuesta);
+        //    });
+        //    e.preventDefault();
+
+        //}
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 sf-gray-primary">
+                <ul class="list-group">
+                    <li class="list-group-item sf-list-group-item">
+                        <span class="fa fa-home"></span>
+                        Inicio
+                    </li>
+                    <li class="list-group-item sf-list-group-item">
+                        <a style="color:white" href="/Search">  <span class="fa fa-search"></span></a>
+                        Buscar
+                    </li>
+                    <li class="list-group-item sf-list-group-item">
+                        <span class="fa fa-folder-open"></span>
+                        Tu biblioteca
+                    </li>
+                </ul>
+
+                <label>BIBLIOTECA</label>
+                <ul class="list-group">
+                    <li class="list-group-item sf-list-group-item sf-link"><a style="color:white"  href="/CompartirCancion">Historial compartidos</a></li>
+                    <li style="color:white" class="list-group-item sf-list-group-item sf-link"><a style="color:white" href="/Cancion/MisFavoritas?usuarioId=@ViewBag.Id">Canciones que te gustan</a></li>
+                    <li class="list-group-item sf-list-group-item sf-link">Album</li>
+                    <li class="list-group-item sf-list-group-item sf-link">Artistas</li>
+                    <li class="list-group-item sf-list-group-item sf-link">Podcasts</li>
+                </ul>
+                <label style="font-size:14px">Playlists</label>
+                <ul class="list-group">
+                    <li class="btn btn-dark sf-btn-default sf-link "><a data-toggle="modal" data-target="#exampleModal3">Crear Playlist</a></li>
+
+                </ul>
+                <ul class="list-group">
+                    @*@foreach (var lista in ViewBag.mislistasdereproduccion)
+                        {
+                            <li class="list-group-item sf-list-group-item sf-link"><a id="" >@lista.Nombre</a></li>
+                        }*@
+                </ul>
+                <div id="tbody">
+
+                </div>
+                <br />
+                <br />
+                <img src="images/album02.jpg" class="img-fluid" />
+            </div>
+            <div class="col-8 sf-playlist">
+                <br />
+                <div class="row">
+                    <div class="col-3">
+                        <form action="~/Usuario/Index">
+                            <input name="query" autocomplete="off" class="form-control sf-input" value="@ViewBag.quer" placeholder="Buscar" />
+                            <button class="btn btn-dark">Buscar</button>
+                        </form>
+                    </div>
+                    <div class="offset-4 col-3">
+                        <a href="/Cancion/PararCancion" class="btn btn-dark btn-block sf-btn-default">Detener Reproducción</a>
+                    </div>
+                    <div class="col-2">
+                        <div class="row">
+                            @if (ViewBag.RutaImag == null || ViewBag.RutaImag == "")
+                            {
+                                <img class="rounded-circle" src="/Images/userNew.png" width="35" />
+                            }
+                            else if (ViewBag.RutaImag != null || ViewBag.RutaImag != "")
+                            {
+                                <img class="rounded-circle" src="/Images/@ViewBag.RutaImag" width="35" />
+
+                            }
+
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle sf-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <fieldset>
+                                        @if (ViewBag.Id != null)
+                                        {<text >
+                                        @ViewBag.Name.ToString() </text>
+                                    }
+                                    </fieldset>
+                                </button>
+                                <div class="dropdown-menu sf-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item sf-dropdown-item" href="/Usuario/EditarUsuario?id=@ViewBag.Id">Mi cuenta</a>
+                                    <a class="dropdown-item sf-dropdown-item" href="/Usuario/VerAmistades">Mis amigos</a>
+                                    <a class="dropdown-item sf-dropdown-item" href="/Auth/Logout">Salir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <h4 class="title">Metallica</h4>
+                    </div>
+                    <div class="offset-3 col-2">
+                        <button class="btn btn-dark btn-block sf-btn-primary">PAUSAR</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-dark btn-block sf-btn-default">SEGUIR</button>
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-dark sf-btn-default">
+                            <span class="fa fa-ellipsis-h"></span>
+                        </button>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="sf-link">GENERAL</a>
+                        <a href="#" class="sf-link">TUS AMIGOS TAMBIÉN ESCUCHAN</a>
+                        <a href="#" class="sf-link">INFORMACIÓN</a>
+                        <a href="#" class="sf-link">MUESTRA</a>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-2">
+                        @*<img src="images/album01.jpg" class="img-fluid" />*@
+                        <img src="~/Img/album01.jpg" class="img-fluid" />
+                    </div>
+                    <div class="col-10">
+                        <label>2020</label>
+                        <h2 class="title">Helping Hands...Live & Acoustic At The Masonic</h2>
+                        <button class="btn btn-dark sf-btn-default">
+                            <span class="fa fa-heart-o"></span>
+                        </button>
+                        <button class="btn btn-dark sf-btn-default">
+                            <span class="fa fa-ellipsis-h"></span>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="title">
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class=" overflow: auto">
+                            <table class="table">
+                               
+                                <tbody>
+                                    
+                                    @foreach (var misfav in ViewBag.MisFav)
+                                    {
+                                        @if (misfav.Estado == true)
+                                        {
+                                        <tr>
+                                            <td>
+                                            <td style="font-size:18px"><a onclick="reproducir()" id="buton" href="/Cancion/ReproducirCancion?id=@misfav.Id"><i class='fas fa-play-circle' style='font-size:48px;color:limegreen'></i></a></td>
+
+                                            <td>@misfav.Nombre</td>
+                                            <td>@misfav.SiMeGusta</td>
+                                            <td>@misfav.NoMeGusta</td>
+                                          
+                                        </tr>
+                                        }
+                                    }
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div style="height: 300px; overflow: auto">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>TÍTULO</th>
+                                        <th>AGREGAR</th>
+                                        <th>COMPARTIR</th>
+                                        <th>LIKE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td></td>
+                                        <td style="font-size:18px"><a onclick="reproducir()" id="buton" href="/Cancion/ReproducirCancion?id=@item.Id"><i class='fas fa-play-circle' style='font-size:48px;color:limegreen'></i></a></td>
+
+                                        <td>@item.Nombre</td>
+                                        <td></td>
+                                        <td>
+                                            <form action="/Cancion/GuardarCancionEnLista" method="post">
+
+                                                <select class="btn btn-dark sf-btn-default" name="ListaReproduccion">
+                                                    <option value="">--Lista--</option>
+                                                    @foreach (var listaReproduccion in ViewBag.ListasReproduccion)
+                                                    {
+                                                        <option value="@listaReproduccion.Id"> @listaReproduccion.Nombre</option>
+                                                    }
+                                                </select>
+                                                <input class="active" type="hidden" name="CancionId" value="@item.Id" />
+                                                <button class="btn btn-dark sf-btn-default sf-link ">Agregar</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="/CompartirCancion/Compartir">
+                                                <select name="IdAmigo">
+                                                    <option value="">Compartir Con</option>
+                                                    @foreach (var amiguito in ViewBag.usuariosAmigos)
+                                                    {
+                                                        <option value="@amiguito.Id">@amiguito.Nombre</option>
+                                                    }
+                                                </select>
+                                                <input name="IdCancion" value="@item.Id" type="hidden" />
+                                                <button><i class='fas fa-share-square' style='font-size:24px;color:greenyellow'></i></button>
+                                            </form>
+                                        </td>
+                                        <td><a href="/Cancion/AgregarFavorita?IdCancion=@item.Id">  <span class="fa fa-thumbs-up"></span></a></td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 sf-gray-primary">
+                <div style="text-align: center; margin-top: 100%">
+                    <h5 class="title"> Ve lo que escuchan tus amigos</h5><br />
+                    <a class="btn btn-dark sf-btn-default" href="/Usuario/AgregarAmigo">ENCONTRAR AMIGOS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/ListaReproduccion/AgregarListaReproduccion" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModal3Label">Crear Lista de Reproducción</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <input autocomplete="off" class="form-control" name="Nombre" />
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Crear Lista</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    $(html).ready(function (e) {
+        $.get("/ListaReproduccion/IndexPrincipal", function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>

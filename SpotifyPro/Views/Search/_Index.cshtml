@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "_Index";
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<style>
+    .Agruparelcontenedor {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .colocar-encima {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .centrarTexto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+
+        <br />
+        <br />
+        <div>
+            @foreach (var sound in ViewBag.albumes)
+            {
+                <div class="Agruparelcontenedor" style="margin:5px">
+                    <div class="col-xl-3">
+                        <div class="rounded-lg">
+                            <h3 style="color:white;margin:10px;padding:5px" class="colocar-encima centrado">  @sound.Nombre</h3>
+                            <img src="~/Img/album02.jpg" width="180" height="150" class="rounded-lg small">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+        <h3 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Canciones</h3>
+        <div>
+
+            @foreach (var sounds in ViewBag.canciones)
+            {
+                <div class="Agruparelcontenedor" style="margin:5px">
+                    <div class="col-xl-3">
+                        <div class="rounded-lg">
+                            <h3 style="color:white;margin:10px;padding:5px" class="colocar-encima centrado">  @sounds.Nombre</h3>
+                            <img src="~/Images/@sounds.Imagen" width="180" height="150" class="rounded-lg small">
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+<script>
+    $(document).ready(function (e) {
+        $.get("/Cancion/_index?busqueda=" + $("#busqueda").val(), function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+<h1>Lista de Canciones</h1>
+
+<input type="text" id="busqueda" name="busqueda" placeholder="Escriba nombre de la cancion" />
+
+
+<div id="tbody">
+
+
+</div>
+<script>
+    $("#busqueda").keyup(function (e) {
+        $.get("/Cancion/_index?busqueda=" + $("#busqueda").val(), function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>

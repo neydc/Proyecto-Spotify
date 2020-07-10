@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+   <h3>PLAYLIST</h3>
+   <div>
+       @foreach (var item in Model)
+       {
+           <h1>@item.Nombre</h1>
+       }
+   </div>

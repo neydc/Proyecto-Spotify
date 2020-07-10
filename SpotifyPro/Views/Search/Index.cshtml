@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+<script>
+    $(document).ready(function (e) {
+        $.get("/Search/ObtenerAlbumes", function (respuesta) {
+            $("#pintarPodcast").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+
+<div class="container">
+    <div class="row">
+        <br />
+        <div class="col-4">
+
+            <input id="buscar" name="query" autocomplete="off" class="form-control sf-input" placeholder="Buscar artistas, canciones y podcast" />
+
+        </div>
+        <div id="pintarPodcast">
+        
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        
+        <div id="pintarbusquedaAll">
+           
+        </div>
+    </div>
+</div>
+<script>
+    $("#buscar").keyup(function (e) {
+        $.get("/Search/_index?query=" + $('#buscar').val(), function (respuesta) {
+            $("#pintarPodcast").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+

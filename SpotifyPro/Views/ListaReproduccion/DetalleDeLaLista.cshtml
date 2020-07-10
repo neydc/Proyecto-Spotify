@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<a href="~/Usuario/Index"><i class='far fa-arrow-alt-circle-left' style='font-size:36px;color:white'></i></a>
+<br />
+<br />
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <img width="170" height="200" src="~/Images/album01.jpg" />
+        </div>
+        <div class="col-10">
+            <br />
+            <br />
+            <br />
+             <label>PLAYLIST</label>
+            <h2 class="title"> @ViewBag.NombreLista </h2>  
+            <label><a style="color:white;font-size:14px" href="/Usuario/EditarUsuario?id=1">@ViewBag.nombre</a></label>
+
+            <button class="btn btn-dark sf-btn-default">
+                <span class="fa fa-heart-o"></span>
+            </button>
+            <button class="btn btn-dark sf-btn-default">
+                <span class="fa fa-ellipsis-h"></span>
+            </button>
+        </div>
+        </div>
+    </div>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th style="font-size:24px"></th>
+            <th style="font-size:24px">Nombre</th>
+            <th style="font-size:24px">Fecha de lanzamiento</th>
+            <th style="font-size:24px">--------Play------</th>
+            <th style="font-size:24px"></th>
+            <th style="font-size:24px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="font-size:18px"><a onclick="reproducir()" id="buton" href="/Cancion/ReproducirCancion?id=@item.Id"><i class='fas fa-play-circle' style='font-size:48px;color:limegreen'></i></a></td>
+            <td style="font-size:18px"><i class='fas fa-music' style='font-size:40px;color:white;width:15px'></i></td>
+            <td style="font-size:18px">@item.Nombre</td>
+            <td style="font-size:18px">@item.FechaLanzamiento</td>
+            <td style="font-size:18px"><i class='far fa-thumbs-up'></i>@item.SiMeGusta</td>
+            <td style="font-size:18px">@item.NoMeGusta  <i class='far fa-thumbs-down'></i></td>
+        </tr>
+        }
+    </tbody>
+</table>

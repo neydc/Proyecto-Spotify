@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = "~/Views/Shared/IndexPrinciapl.cshtml";
+    }
+<style>
+    .Agruparelcontenedor {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .colocar-encima {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .centrarTexto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <div class="container">
+        <div class=" ">
+            <br />
+            <div class="row">
+               
+                </div>
+                <br />
+                <h1 style="font-family:'Times New Roman', Helvetica, sans-serif">Explorar todo</h1>
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="Agruparelcontenedor" style="margin:5px">
+                            <div class="col-xl-3">
+                                <div class="rounded-lg">
+                                    <h3 style="color:white;margin:10px;padding:5px" class="colocar-encima centrado">  @item.Nombre</h3>
+                                    <img src="~/Img/album02.jpg" width="180" height="150" class="rounded-lg small">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>

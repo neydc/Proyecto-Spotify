@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout =null;
+}
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script>
+    $(document).ready(function (e) {
+        $.get("/Usuario/_AgregarAmigo?busqueda=" + $('#busqueda').val(), function (respuesta) {
+            $("#contenedor").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+<div class="container">
+   <div class="row">
+       <div class="col-md-6">
+           <div class="col-md-6">
+               <input class="form-control sf-input" type="text" id="busqueda" name="busqueda" placeholder="Buscar" />
+           </div>
+           <div class="col-md-6">
+
+           </div>
+       </div>
+       <div class="col-md-6">
+
+       </div>
+   </div>
+</div>
+<br />
+<br />
+<div id="contenedor">
+
+</div>
+<script>
+    $("#busqueda").keyup(function (e) {
+        $.get("/Usuario/_AgregarAmigo?busqueda=" + $('#busqueda').val(), function (respuesta) {
+            $("#contenedor").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+@*<script>
+    function init() {
+        $.ajax({
+            url: '/Usuario/_AgregarAmigo?busqueda=' + $('#busqueda').val()
+        }).done(function (tabla) {
+            $('#contenedor').html(tabla)
+        })
+
+    } $('form').on('submit', function (e) {
+        e.preventDefault();
+        init();
+    });
+    init();
+
+
+
+</script>*@

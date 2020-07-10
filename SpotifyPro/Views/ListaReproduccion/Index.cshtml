@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+<script>
+    $(document).ready(function (e) {
+        $.get("/ListaReproduccion/_index?busqueda=" + $("#busqueda").val(), function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+        e.preventDefault();
+    });
+</script>
+
+<input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar Lista Reproduccion" />
+<a href="/Usuario/Index">Volver al Index</a>
+<div id="tbody">
+
+</div>
+
+<script>
+    $("#busqueda").keyup(function (e) {
+             $.get("/ListaReproduccion/_index?busqueda=" + $("#busqueda").val(), function (respuesta) {
+                $("#tbody").html(respuesta);
+            });
+            e.preventDefault();
+        });
+  </script>
